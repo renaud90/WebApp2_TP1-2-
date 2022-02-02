@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ffuzSmDNS0QASJBJYb6wwlMlea8I+J18IZ9CzEO/jAZAeH1UN/uCiNMSPoBEnT5CZi8znzDShRjuRrLBEiCU9Q==",
+  "dgSpecHash": "y8r/cTkBEO/9HNi2HYV45lZ/Rz10xAXcpglBicmlQf/G2WSjJ6qTV0cPYh8gdPKL8m1WEYb7AIGQ9KBvAIrpZQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Renaud Lussier\\Programmation\\AEC_PROGRAMMATION\\B5-Appli_web_2\\TP1\\Web2_TP1_RenaudLussier\\EvenementsAPI\\EvenementsAPI.csproj",
+  "projectFilePath": "C:\\Users\\Renaud Lussier\\Programmation\\AEC_PROGRAMMATION\\B5-Appli_web_2\\TP1\\Web2_TP1_RenaudLussier_MohammedJalaleddine\\EvenementsAPI\\EvenementsAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Renaud Lussier\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Renaud Lussier\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

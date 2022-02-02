@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Renaud Lussier\\Programmation\\AEC_PROGRAMMATION\\B5-Appli_web_2\\TP1\\Web2_TP1_RenaudLussier\\EvenementsAPI\\EvenementsAPI.csproj": {}
+    "C:\\Users\\Renaud Lussier\\Programmation\\AEC_PROGRAMMATION\\B5-Appli_web_2\\TP1\\Web2_TP1_RenaudLussier_MohammedJalaleddine\\EvenementsAPI\\EvenementsAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Renaud Lussier\\Programmation\\AEC_PROGRAMMATION\\B5-Appli_web_2\\TP1\\Web2_TP1_RenaudLussier\\EvenementsAPI\\EvenementsAPI.csproj": {
+    "C:\\Users\\Renaud Lussier\\Programmation\\AEC_PROGRAMMATION\\B5-Appli_web_2\\TP1\\Web2_TP1_RenaudLussier_MohammedJalaleddine\\EvenementsAPI\\EvenementsAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Renaud Lussier\\Programmation\\AEC_PROGRAMMATION\\B5-Appli_web_2\\TP1\\Web2_TP1_RenaudLussier\\EvenementsAPI\\EvenementsAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Renaud Lussier\\Programmation\\AEC_PROGRAMMATION\\B5-Appli_web_2\\TP1\\Web2_TP1_RenaudLussier_MohammedJalaleddine\\EvenementsAPI\\EvenementsAPI.csproj",
         "projectName": "EvenementsAPI",
-        "projectPath": "C:\\Users\\Renaud Lussier\\Programmation\\AEC_PROGRAMMATION\\B5-Appli_web_2\\TP1\\Web2_TP1_RenaudLussier\\EvenementsAPI\\EvenementsAPI.csproj",
+        "projectPath": "C:\\Users\\Renaud Lussier\\Programmation\\AEC_PROGRAMMATION\\B5-Appli_web_2\\TP1\\Web2_TP1_RenaudLussier_MohammedJalaleddine\\EvenementsAPI\\EvenementsAPI.csproj",
         "packagesPath": "C:\\Users\\Renaud Lussier\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Renaud Lussier\\Programmation\\AEC_PROGRAMMATION\\B5-Appli_web_2\\TP1\\Web2_TP1_RenaudLussier\\EvenementsAPI\\obj\\",
+        "outputPath": "C:\\Users\\Renaud Lussier\\Programmation\\AEC_PROGRAMMATION\\B5-Appli_web_2\\TP1\\Web2_TP1_RenaudLussier_MohammedJalaleddine\\EvenementsAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"

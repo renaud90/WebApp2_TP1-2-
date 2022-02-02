@@ -1,3 +1,4 @@
+using EvenementsAPI.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,7 +31,7 @@ namespace EvenementsAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers(o => o.AllowEmptyInputInBodyModelBinding = true)
+            services.AddControllers(o => { o.AllowEmptyInputInBodyModelBinding = true; o.Filters.Add<HtppResponseExceptionFilter>(); })
                 .ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true)
                 .AddJsonOptions(o => o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())); 
 
