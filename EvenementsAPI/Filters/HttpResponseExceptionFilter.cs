@@ -28,7 +28,7 @@ namespace EvenementsAPI.Filters
                     {
                         StatusCode = exception.StatusCode
                     };
-                    _logger.LogError(exception, "Failed to handle request: {msg}", exception.Errors);//Important de laisser une trace de l'erreur dans les logs
+                    _logger.LogError(exception, "Failed to handle request: {msg}", exception.Errors);
                 }
                 else
                 {
@@ -36,7 +36,7 @@ namespace EvenementsAPI.Filters
                     {
                         StatusCode = 500
                     };
-                    _logger.LogError(context.Exception, "Internal server error: {msg}", context.Exception.Message); //Important de laisser une trace de l'erreur dans les logs
+                    _logger.LogError(context.Exception, "Internal server error: {msg}", context.Exception.Message); 
                 }
 
                 context.ExceptionHandled = true;

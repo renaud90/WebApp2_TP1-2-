@@ -9,7 +9,9 @@ namespace EvenementsAPI
     public class Repository
     {
         public static int IdSequenceEvenement { get; set; } = 1;
-        public static ISet<Evenement> Villes { get; set; } = new HashSet<Evenement>();
+        public static int IdSequenceCategorie { get; set; } = 1;
+        public static ISet<Evenement> Evenements { get; set; } = new HashSet<Evenement>();
+        public static ISet<Categorie> Categories { get; set; } = new HashSet<Categorie>();
 
     }
 }
