@@ -99,7 +99,7 @@ namespace EvenementsAPI.BusinessLogic
             {
                 throw new HttpException
                 {
-                    Errors = new { Errors = "Parametres d'entrée non valides" },
+                    Errors = new { Errors = "Parametres d'entrée non valides: champs non renseignés" },
                     StatusCode = StatusCodes.Status400BadRequest
                 };
             }
@@ -109,7 +109,7 @@ namespace EvenementsAPI.BusinessLogic
                 {
                     throw new HttpException
                     {
-                        Errors = new { Errors = "Parametres d'entrée non valides" },
+                        Errors = new { Errors = "Parametres d'entrée non valides: une ou plusieurs catégories d'événement non existante" },
                         StatusCode = StatusCodes.Status400BadRequest
                     };
                 }
@@ -118,7 +118,7 @@ namespace EvenementsAPI.BusinessLogic
             {
                 throw new HttpException
                 {
-                    Errors = new { Errors = "Parametres d'entrée non valides" },
+                    Errors = new { Errors = "Parametres d'entrée non valides: ville sélectionnées non existante" },
                     StatusCode = StatusCodes.Status400BadRequest
                 };
             }
