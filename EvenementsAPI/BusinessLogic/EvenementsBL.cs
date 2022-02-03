@@ -89,14 +89,39 @@ namespace EvenementsAPI.BusinessLogic
                     StatusCode = StatusCodes.Status400BadRequest
                 };
             }
-            //if (String.IsNullOrEmpty(value.Nom))
-            //{
-            //    throw new HttpException
-            //    {
-            //        Errors = new { Errors = "Parametres d'entrée non valides: nom de catégorie inexistant" },
-            //        StatusCode = StatusCodes.Status400BadRequest
-            //    };
-            //}
+            if (String.IsNullOrEmpty(value.Adresse) ||
+                String.IsNullOrEmpty(value.Description) ||
+                String.IsNullOrEmpty(value.NomOrganisateur) ||
+                value.DateDebut == DateTime.MinValue ||
+                value.DateFin == DateTime.MinValue ||
+                value.IdsCategories.Count() < 1 ||
+                value.IdVille < 1)
+            {
+                throw new HttpException
+                {
+                    Errors = new { Errors = "Parametres d'entrée non valides" },
+                    StatusCode = StatusCodes.Status400BadRequest
+                };
+            }
+            foreach(int id in value.IdsCategories)
+            {
+                if(Repository.Categories.FirstOrDefault(_ => _.Id == id) == null)
+                {
+                    throw new HttpException
+                    {
+                        Errors = new { Errors = "Parametres d'entrée non valides" },
+                        StatusCode = StatusCodes.Status400BadRequest
+                    };
+                }
+            }
+            if(Repository.Villes.FirstOrDefault(_ => _.Id == value.IdVille) == null)
+            {
+                throw new HttpException
+                {
+                    Errors = new { Errors = "Parametres d'entrée non valides" },
+                    StatusCode = StatusCodes.Status400BadRequest
+                };
+            }
         }
     }
 }
