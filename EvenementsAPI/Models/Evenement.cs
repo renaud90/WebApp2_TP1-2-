@@ -25,5 +25,6 @@ namespace EvenementsAPI.Models
         public string NomOrganisateur { get; set; }
         [Required]
         public int IdVille { get; set; }
+        public double Prix { get; set; }
     }
 }

@@ -14,84 +14,85 @@ namespace EvenementsAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class CategoriesController : ControllerBase
+    public class EvenementsController : ControllerBase
     {
-        private readonly ICategoriesBL _categoriesBL;
+        private readonly IEvenementsBL _evenementsBL;
 
-        public CategoriesController(ICategoriesBL categoriesBL)
+        public EvenementsController(IEvenementsBL evenementsBL)
         {
-            _categoriesBL = categoriesBL;
+            _evenementsBL = evenementsBL;
         }
 
         // GET: api/<UsagersController>
         /// <summary>
-        /// Lister toutes les catégories d'événement de l'application
+        /// Lister toutes les événements de l'application
         /// </summary>
         [HttpGet]
-        [ProducesResponseType(typeof(List<Categorie>), (int)HttpStatusCode.OK)]
-        public ActionResult<IEnumerable<Categorie>> Get()
+        [ProducesResponseType(typeof(List<Evenement>), (int)HttpStatusCode.OK)]
+        public ActionResult<IEnumerable<Evenement>> Get()
         {
-            return Ok(_categoriesBL.GetList());
+            return Ok(_evenementsBL.GetList());
         }
 
         // GET api/usagers/5
         /// <summary>
-        /// Obtenir une catégorie par son ID
+        /// Obtenir une événement par son ID
         /// </summary>
-        /// <param name="id"> ID de la categorie</param>
+        /// <param name="id"> ID de l'événement</param>
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Categorie), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Evenement), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public ActionResult<Categorie> Get(int id)
+        public ActionResult<Evenement> Get(int id)
         {
-            var categorie = _categoriesBL.Get(id);
-            return categorie is null ? NotFound(new { Errors = $"Element introuvable (id = {id})" }) : Ok(categorie);
+            var evenement = _evenementsBL.Get(id);
+            return evenement is null ? NotFound(new { Errors = $"Element introuvable (id = {id})" }) : Ok(evenement);
         }
 
         // POST api/usagers
         /// <summary>
-        /// Ajouter une nouvelle catégorie
+        /// Ajouter un nouvel événement
         /// </summary>
-        /// <param name="value">La catégorie à ajouter</param>
+        /// <param name="value">L'événement à ajouter</param>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         [Consumes(MediaTypeNames.Application.Json)]
-        public ActionResult Post([FromBody] Categorie value)
+        public ActionResult Post([FromBody] Evenement value)
         {
-            value = _categoriesBL.Add(value);
+            value = _evenementsBL.Add(value);
             return CreatedAtAction(nameof(Get), new { id = value.Id }, null);
 
         }
 
         // PUT api/usagers/5
         /// <summary>
-        /// Modifier une catégorie existante
+        /// Modifier un événement existant
         /// </summary>
-        /// <param name="id"> ID de la categorie</param>
-        /// <param name="value">La catégorie à ajouter</param>
+        /// <param name="id">ID de l'événement</param>
+        /// <param name="value">L'événement à ajouter</param>
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public ActionResult Put(int id, [FromBody] Categorie value)
+        public ActionResult Put(int id, [FromBody] Evenement value)
         {
-            _categoriesBL.Update(id, value);
+            _evenementsBL.Update(id, value);
             return NoContent();
         }
 
         // DELETE api/usagers/5
         /// <summary>
-        /// Suppression d'une catégorie
+        /// Suppression d'un événement
         /// </summary>
-        /// <param name="id">ID de la catégorie</param>
+        /// <param name="id">ID de l'événement</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public ActionResult Delete(int id)
         {
-            _categoriesBL.Delete(id);
+            _evenementsBL.Delete(id);
             return NoContent();
         }
     }

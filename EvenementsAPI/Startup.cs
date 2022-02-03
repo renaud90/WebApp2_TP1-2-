@@ -33,6 +33,7 @@ namespace EvenementsAPI
         {
             services.AddScoped<IParticipationsBL,ParticipationsBL>();
             services.AddScoped<IVillesBL,VillesBL>();
+            services.AddScoped<IEvenementsBL, EvenementsBL>();
             services.AddScoped<ICategoriesBL, CategoriesBL>();
 
             services.AddControllers(o => { o.AllowEmptyInputInBodyModelBinding = true; o.Filters.Add<HtppResponseExceptionFilter>(); })
