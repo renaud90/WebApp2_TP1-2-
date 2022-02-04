@@ -66,7 +66,6 @@ namespace EvenementsAPI.Controllers
             {
                 return BadRequest(new { Error = "Participation doit pas etre null" });
             }
-            
 
             value.Id = Repository.IdSequenceParticipation++;
             value.IsValid = false;
@@ -102,28 +101,7 @@ namespace EvenementsAPI.Controllers
 
         }
 
-        // PUT api/<ParticipationsController>/5
-        [HttpPut("{id}")]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public ActionResult Put(int id, [FromBody] Participation value)
-        {
-            if (value == null)
-            {
-                return BadRequest();
-            }
-            var participation = _participationsBL.Get(id);
-            if (participation == null)
-            {
-                return NotFound();
-            }
-            participation.Nom = value.Nom;
-            participation.Prenom = value.Prenom;
-            participation.Courriel = value.Courriel;
-            participation.NbPlaces = value.NbPlaces;
-            
-            return NoContent();
-        }
+        
 
         // DELETE api/<ParticipationsController>/5
         [HttpDelete("{id}")]

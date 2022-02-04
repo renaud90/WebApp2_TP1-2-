@@ -12,7 +12,6 @@ namespace EvenementsAPI.BusinessLogic
         public Participation Get(int id);
 
         public Participation Add(Participation value);
-        public Participation Updade(int id, Participation value);
 
         public Participation Delete(int id);
     }
