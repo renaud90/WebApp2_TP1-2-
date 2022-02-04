@@ -12,14 +12,7 @@ namespace EvenementsAPI.BusinessLogic
         public Participation Add(Participation value)
         {
 
-            if (value == null)
-            {
-                throw new HttpException
-                {
-                    Errors = new { Errors = "Parametres d'entrés non valides" },
-                    StatusCode = StatusCodes.Status400BadRequest
-                };
-            }
+            ValiderModeleDeParticipation(value);
 
             value.Id = Repository.IdSequenceParticipation++;
             Repository.Participations.Add(value);
@@ -40,7 +33,7 @@ namespace EvenementsAPI.BusinessLogic
                 throw new HttpException
                 {
                     Errors = new { Errors = $"Element introuvable (id = {id})" },
-                    StatusCode = StatusCodes.Status400BadRequest
+                    StatusCode = StatusCodes.Status404NotFound
                 };
             }
 
@@ -48,37 +41,7 @@ namespace EvenementsAPI.BusinessLogic
 
         }
 
-        public Participation Updade(int id, Participation value)
-        {
-            if (value == null)
-            {
-                throw new HttpException
-                {
-                    Errors = new { Errors = "Parametres d'entrés non valides" },
-                    StatusCode = StatusCodes.Status400BadRequest
-                };
-            }
-
-            var Participation = Repository.Participations.FirstOrDefault(x => x.Id == id);
-
-
-            if (Participation == null)
-            {
-                throw new HttpException
-                {
-                    Errors = new { Errors = $"Element introuvable (id = {id})" },
-                    StatusCode = StatusCodes.Status400BadRequest
-                };
-            }
-
-            Participation.Nom = value.Nom;
-            Participation.Prenom = value.Prenom;
-            Participation.Courriel = value.Courriel;
-            Participation.NbPlaces = value.NbPlaces;
-
-            return Participation;
-        }
-
+        
         public Participation Delete(int id)
         {
             var Participation = Repository.Participations.FirstOrDefault(x => x.Id == id);
@@ -87,12 +50,53 @@ namespace EvenementsAPI.BusinessLogic
                 throw new HttpException
                 {
                     Errors = new { Errors = $"Element introuvable (id = {id})" },
-                    StatusCode = StatusCodes.Status400BadRequest
+                    StatusCode = StatusCodes.Status404NotFound
                 };
             }
 
             Repository.Participations.Remove(Participation);
             return Participation;
+        }
+
+        private void ValiderModeleDeParticipation(Participation value)
+        {
+            if (value == null)
+            {
+                throw new HttpException
+                {
+                    Errors = new { Errors = "Parametres d'entrée non valides" },
+                    StatusCode = StatusCodes.Status400BadRequest
+                };
+            }
+            if (String.IsNullOrEmpty(value.Nom) ||
+                String.IsNullOrEmpty(value.Prenom) ||
+                String.IsNullOrEmpty(value.Courriel) ||
+                value.IdEvenement < 1 || value.NbPlaces >= 1)
+            {
+                throw new HttpException
+                {
+                    Errors = new { Errors = "Parametres d'entrée non valides" },
+                    StatusCode = StatusCodes.Status400BadRequest
+                };
+            }
+           
+            if (Repository.Evenements.FirstOrDefault(e => e.Id == value.IdEvenement) == null)
+            {
+                throw new HttpException
+                {
+                    Errors = new { Errors = "Parametres d'entrée non valides" },
+                    StatusCode = StatusCodes.Status400BadRequest
+                };
+            }
+
+            if (Repository.Participations.FirstOrDefault(p => p.Courriel == value.Courriel) != null)
+            {
+                throw new HttpException
+                {
+                    Errors = new { Errors = "Parametres d'entrée non valides" },
+                    StatusCode = StatusCodes.Status400BadRequest
+                };
+            }
         }
     }
 }

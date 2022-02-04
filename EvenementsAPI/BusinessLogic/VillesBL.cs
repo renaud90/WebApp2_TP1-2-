@@ -12,14 +12,7 @@ namespace EvenementsAPI.BusinessLogic
         public Ville Add(Ville value)
         {
 
-            if (value == null)
-            {
-                throw new HttpException
-                {
-                    Errors = new { Errors = "Parametres d'entrés non valides" },
-                    StatusCode = StatusCodes.Status400BadRequest
-                };
-            }
+            ValiderModeleVille(value);
 
             value.Id = Repository.IdSequenceVille++;
             Repository.Villes.Add(value);
@@ -40,7 +33,7 @@ namespace EvenementsAPI.BusinessLogic
                 throw new HttpException
                 {
                     Errors = new { Errors = $"Element introuvable (id = {id})" },
-                    StatusCode = StatusCodes.Status400BadRequest
+                    StatusCode = StatusCodes.Status404NotFound
                 };
             }
 
@@ -50,14 +43,7 @@ namespace EvenementsAPI.BusinessLogic
 
         public Ville Updade(int id, Ville value)
         {
-            if (value == null)
-            {
-                throw new HttpException
-                {
-                    Errors = new { Errors = "Parametres d'entrés non valides" },
-                    StatusCode = StatusCodes.Status400BadRequest
-                };
-            }
+            ValiderModeleVille(value);
 
             var ville = Repository.Villes.FirstOrDefault(x => x.Id == id);
 
@@ -67,7 +53,7 @@ namespace EvenementsAPI.BusinessLogic
                 throw new HttpException
                 {
                     Errors = new { Errors = $"Element introuvable (id = {id})" },
-                    StatusCode = StatusCodes.Status400BadRequest
+                    StatusCode = StatusCodes.Status404NotFound
                 };
             }
 
@@ -85,12 +71,43 @@ namespace EvenementsAPI.BusinessLogic
                 throw new HttpException
                 {
                     Errors = new { Errors = $"Element introuvable (id = {id})" },
+                    StatusCode = StatusCodes.Status404NotFound
+                };
+            }
+            var villeAssociee = Repository.Evenements.FirstOrDefault(e => e.IdVille == id);
+
+            if (villeAssociee != null)
+            {
+                throw new HttpException
+                {
+                    Errors = new { Errors = $"Element (id = {id}) ne peut être supprimé, car associé à au moins un événement" },
                     StatusCode = StatusCodes.Status400BadRequest
                 };
             }
 
+
             Repository.Villes.Remove(ville);
             return ville;
+        }
+
+        private void ValiderModeleVille(Ville value)
+        {
+            if (value == null)
+            {
+                throw new HttpException
+                {
+                    Errors = new { Errors = "Parametres d'entrée non valides" },
+                    StatusCode = StatusCodes.Status400BadRequest
+                };
+            }
+            if (String.IsNullOrEmpty(value.Nom))
+            {
+                throw new HttpException
+                {
+                    Errors = new { Errors = "Parametres d'entrée non valides: nom de ville non fourni" },
+                    StatusCode = StatusCodes.Status400BadRequest
+                };
+            }
         }
     }
 }
