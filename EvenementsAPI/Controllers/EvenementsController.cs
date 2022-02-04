@@ -69,7 +69,7 @@ namespace EvenementsAPI.Controllers
         /// Modifier un événement existant
         /// </summary>
         /// <param name="id">ID de l'événement</param>
-        /// <param name="value">L'événement à ajouter</param>
+        /// <param name="value">L'événement à modifier</param>
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]

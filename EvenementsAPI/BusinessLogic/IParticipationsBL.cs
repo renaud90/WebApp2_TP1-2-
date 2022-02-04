@@ -10,6 +10,7 @@ namespace EvenementsAPI.BusinessLogic
     {
         public IEnumerable<Participation> GetList();
         public Participation Get(int id);
+        public bool GetStatus(int id);
 
         public Participation Add(Participation value);
 

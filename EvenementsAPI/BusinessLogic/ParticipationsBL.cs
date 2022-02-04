@@ -15,9 +15,29 @@ namespace EvenementsAPI.BusinessLogic
             ValiderModeleDeParticipation(value);
 
             value.Id = Repository.IdSequenceParticipation++;
+            value.IsValid = false;
             Repository.Participations.Add(value);
 
             return value;
+        }
+
+        public bool GetStatus(int id)
+        {
+            var participation = Repository.Participations.FirstOrDefault(_ => _.Id == id);
+            if (participation == null)
+            {
+                throw new HttpException
+                {
+                    Errors = new { Errors = $"Element introuvable (id = {id})" },
+                    StatusCode = StatusCodes.Status404NotFound
+                };
+            }
+            if (participation.IsValid)
+            {
+                return true;
+            }
+            verifyParticipation(participation);
+            return false;
         }
 
         public IEnumerable<Participation> GetList()
@@ -71,7 +91,7 @@ namespace EvenementsAPI.BusinessLogic
             if (String.IsNullOrEmpty(value.Nom) ||
                 String.IsNullOrEmpty(value.Prenom) ||
                 String.IsNullOrEmpty(value.Courriel) ||
-                value.IdEvenement < 1 || value.NbPlaces >= 1)
+                value.IdEvenement < 1 || value.NbPlaces < 1)
             {
                 throw new HttpException
                 {
@@ -84,19 +104,25 @@ namespace EvenementsAPI.BusinessLogic
             {
                 throw new HttpException
                 {
-                    Errors = new { Errors = "Parametres d'entrée non valides" },
+                    Errors = new { Errors = $"Parametres d'entrée non valides: événement avec Id {value.IdEvenement} inexistant" },
                     StatusCode = StatusCodes.Status400BadRequest
                 };
             }
 
-            if (Repository.Participations.FirstOrDefault(p => p.Courriel == value.Courriel) != null)
+            if (Repository.Participations.FirstOrDefault(p => p.Courriel == value.Courriel && p.IdEvenement == value.IdEvenement) != null)
             {
                 throw new HttpException
                 {
-                    Errors = new { Errors = "Parametres d'entrée non valides" },
+                    Errors = new { Errors = $"Parametres d'entrée non valides: une participation enregistrée à l'adresse courriel {value.Courriel} pour l'événement avec Id {value.IdEvenement} existe déjà" },
                     StatusCode = StatusCodes.Status400BadRequest
                 };
             }
+        }
+
+        private void verifyParticipation(Participation Participation)
+        {
+            var isValid = new Random().Next(1, 10) > 5 ? true : false;//Simuler la validation externe;
+            Participation.IsValid = isValid;
         }
     }
 }

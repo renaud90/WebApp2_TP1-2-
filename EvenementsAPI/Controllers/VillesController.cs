@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 
 namespace EvenementsAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
+    [Produces("application/json")]
     public class VillesController : ControllerBase
     {
         private readonly IVillesBL _villesBL;
 
-     public VillesController(IVillesBL villesBL)
+        public VillesController(IVillesBL villesBL)
         {
             _villesBL = villesBL;
         }
@@ -27,7 +30,7 @@ namespace EvenementsAPI.Controllers
         [ProducesResponseType(typeof(List<Ville>), StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<Ville>> Get()
         {
-            return _villesBL.GetList().ToList();
+            return Ok(_villesBL.GetList());
         }
 
         // GET api/<VillesController>/5
@@ -54,52 +57,45 @@ namespace EvenementsAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public ActionResult Post([FromBody] Ville value)
         {
-            if (value == null)
-            {
-                return BadRequest(new { Error = "Ville doit pas etre null" });
-            }
-            value.Id = Repository.IdSequenceVille++;
             _villesBL.Add(value);
-             return Ok(value);
+            return CreatedAtAction(nameof(Get), new { id = value.Id }, null);
         }
 
-        
+
 
         // PUT api/<VillesController>/5
+        /// <summary>
+        /// Modifier une ville existante
+        /// </summary>
+        /// <param name="id">ID de la ville</param>
+        /// <param name="value">La ville à modifier</param>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult Put(int id, [FromBody] Ville value)
         {
-            if (value == null)
-            {
-                return BadRequest();
-            }
-            var ville = _villesBL.Get(id);
-            if (ville == null)
-            {
-                return NotFound();
-            }
-            ville.Nom = value.Nom;
-            ville.Region = value.Region;
-            
-            
+            _villesBL.Updade(id, value);
             return NoContent();
         }
 
         // DELETE api/<VillesController>/5
+        /// <summary>
+        /// Suppression d'un événement
+        /// </summary>
+        /// <param name="id">ID de la ville</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult Delete(int id)
         {
-            var ville = _villesBL.Get(id);
-            if (ville != null)
-            {
-                Repository.Villes.Remove(ville);
-            }
+
+            _villesBL.Delete(id);
             return NoContent();
         }
 

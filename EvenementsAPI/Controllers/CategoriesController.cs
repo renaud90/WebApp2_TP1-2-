@@ -69,7 +69,7 @@ namespace EvenementsAPI.Controllers
         /// Modifier une catégorie existante
         /// </summary>
         /// <param name="id"> ID de la categorie</param>
-        /// <param name="value">La catégorie à ajouter</param>
+        /// <param name="value">La catégorie à modifier</param>
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]

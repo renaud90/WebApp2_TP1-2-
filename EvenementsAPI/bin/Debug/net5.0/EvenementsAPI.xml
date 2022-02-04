@@ -26,7 +26,7 @@
             Modifier une catégorie existante
             </summary>
             <param name="id"> ID de la categorie</param>
-            <param name="value">La catégorie à ajouter</param>
+            <param name="value">La catégorie à modifier</param>
         </member>
         <member name="M:EvenementsAPI.Controllers.CategoriesController.Delete(System.Int32)">
             <summary>
@@ -56,7 +56,7 @@
             Modifier un événement existant
             </summary>
             <param name="id">ID de l'événement</param>
-            <param name="value">L'événement à ajouter</param>
+            <param name="value">L'événement à modifier</param>
         </member>
         <member name="M:EvenementsAPI.Controllers.EvenementsController.Delete(System.Int32)">
             <summary>
@@ -92,6 +92,13 @@
             <param name="id">identifian Participation</param>
             <returns>retourne le status en tant que string</returns>
         </member>
+        <member name="M:EvenementsAPI.Controllers.ParticipationsController.Delete(System.Int32)">
+            <summary>
+            Suppression d'une participation
+            </summary>
+            <param name="id">ID de la participation</param>
+            <returns></returns>
+        </member>
         <member name="M:EvenementsAPI.Controllers.VillesController.Get">
             <summary>
             Lister tous les Villes enregistré
@@ -110,6 +117,20 @@
             Permet d'ajouter un Ville
             </summary>
             <param name="value"><see cref="T:EvenementsAPI.Models.Ville"/> Nouvelle Ville</param>
+            <returns></returns>
+        </member>
+        <member name="M:EvenementsAPI.Controllers.VillesController.Put(System.Int32,EvenementsAPI.Models.Ville)">
+            <summary>
+            Modifier une ville existante
+            </summary>
+            <param name="id">ID de la ville</param>
+            <param name="value">La ville à modifier</param>
+        </member>
+        <member name="M:EvenementsAPI.Controllers.VillesController.Delete(System.Int32)">
+            <summary>
+            Suppression d'un événement
+            </summary>
+            <param name="id">ID de la ville</param>
             <returns></returns>
         </member>
     </members>

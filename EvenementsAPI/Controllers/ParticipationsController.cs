@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 
 namespace EvenementsAPI.Controllers
 {
-    
-
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
@@ -62,13 +60,7 @@ namespace EvenementsAPI.Controllers
         [ProducesResponseType(StatusCodes.Status202Accepted)]
         public ActionResult Post([FromBody] Participation value)
         {
-            if (value == null)
-            {
-                return BadRequest(new { Error = "Participation doit pas etre null" });
-            }
 
-            value.Id = Repository.IdSequenceParticipation++;
-            value.IsValid = false;
             _participationsBL.Add(value);
 
             return new AcceptedResult { Location = Url.Action(nameof(Status), new { id = value.Id }) };
@@ -85,48 +77,33 @@ namespace EvenementsAPI.Controllers
         [ProducesResponseType(StatusCodes.Status303SeeOther)]
         public ActionResult Status(int id)
         {
-            var Participation = _participationsBL.Get(id);
-            if (Participation == null) 
+            if (_participationsBL.GetStatus(id))
             {
-                return NotFound();
-            }
-
-            if (Participation.IsValid) {
                 Response.Headers.Add("Location", Url.Action(nameof(Get), new { id = id }));
                 return new StatusCodeResult(StatusCodes.Status303SeeOther);
             }
-            verifyParticipation(Participation);
-
-            return Ok(new { status = "Validation en attente" });
-
+            else
+            {
+                return Ok(new { status = "Validation en attente" });
+            }  
         }
 
-        
+
 
         // DELETE api/<ParticipationsController>/5
+        /// <summary>
+        /// Suppression d'une participation
+        /// </summary>
+        /// <param name="id">ID de la participation</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult Delete(int id)
         {
-            var participation = _participationsBL.Get(id);
-            if (participation != null)
-            {
-                Repository.Participations.Remove(participation);
-            }
+            _participationsBL.Delete(id);
+
             return NoContent();
         }
-
-
-        private void verifyParticipation(Participation Participation)
-        {
-            var isValid = new Random().Next(1, 10) > 5 ? true : false;//Simuler la validation externe;
-            Participation.IsValid = isValid;
-        }
-
-
-
-
-
-
     }
 }
