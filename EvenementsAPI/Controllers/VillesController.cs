@@ -49,6 +49,19 @@ namespace EvenementsAPI.Controllers
             return ville != null ? Ok(ville) : NotFound();
         }
 
+        // GET api/<VillesController>/5/evenements
+        /// <summary>
+        /// Obtenir les événement associés à une ville par l'ID de la ville
+        /// </summary>
+        /// <param name="id">Identifiant de la Ville</param>
+        [HttpGet("{id}/evenements")]
+        [ProducesResponseType(typeof(Ville), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<IEnumerable<Evenement>> GetEvenements(int id)
+        {
+            return Ok(_villesBL.GetEvenements(id));
+        }
+
         // POST api/<VillesController>
         /// <summary>
         /// Permet d'ajouter un Ville

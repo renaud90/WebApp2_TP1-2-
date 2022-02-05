@@ -118,6 +118,12 @@
             <param name="id">Identifiant de la Ville</param>
             <returns><see cref="T:EvenementsAPI.Models.Ville"/></returns>
         </member>
+        <member name="M:EvenementsAPI.Controllers.VillesController.GetEvenements(System.Int32)">
+            <summary>
+            Obtenir les événement associés è une ville par l'ID de la ville
+            </summary>
+            <param name="id">Identifiant de la Ville</param>
+        </member>
         <member name="M:EvenementsAPI.Controllers.VillesController.Post(EvenementsAPI.Models.Ville)">
             <summary>
             Permet d'ajouter un Ville

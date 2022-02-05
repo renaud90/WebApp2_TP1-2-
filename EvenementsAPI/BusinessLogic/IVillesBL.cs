@@ -10,6 +10,7 @@ namespace EvenementsAPI.BusinessLogic
     {
         public IEnumerable<Ville> GetList();
         public Ville Get(int id);
+        public IEnumerable<Evenement> GetEvenements(int id);
 
         public Ville Add(Ville value);
         public Ville Updade(int id, Ville value);

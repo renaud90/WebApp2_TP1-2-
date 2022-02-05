@@ -41,6 +41,22 @@ namespace EvenementsAPI.BusinessLogic
 
         }
 
+        public IEnumerable<Evenement> GetEvenements(int id)
+        {
+            var ville = Repository.Villes.FirstOrDefault(x => x.Id == id);
+            if (ville == null)
+            {
+                throw new HttpException
+                {
+                    Errors = new { Errors = $"Element introuvable (id = {id})" },
+                    StatusCode = StatusCodes.Status404NotFound
+                };
+            }
+
+            return Repository.Evenements.Where(_ => _.IdVille == id);
+
+        }
+
         public Ville Updade(int id, Ville value)
         {
             ValiderModeleVille(value);
