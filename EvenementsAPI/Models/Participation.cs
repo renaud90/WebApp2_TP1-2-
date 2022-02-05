@@ -19,6 +19,7 @@ namespace EvenementsAPI.Models
         [Required]
         public int NbPlaces { get; set; }
         public bool IsValid { get; set; } = false;
+        [Required]
         public int IdEvenement { get; set; }
 
     }

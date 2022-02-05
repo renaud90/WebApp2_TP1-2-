@@ -57,3 +57,4 @@ C:\Users\Renaud Lussier\Programmation\AEC_PROGRAMMATION\B5-Appli_web_2\TP1(2)\We
 C:\Users\Renaud Lussier\Programmation\AEC_PROGRAMMATION\B5-Appli_web_2\TP1(2)\WebApp2_TP1-2-\EvenementsAPI\obj\Debug\net5.0\EvenementsAPI.xml
 C:\Users\Renaud Lussier\Programmation\AEC_PROGRAMMATION\B5-Appli_web_2\TP1(2)\WebApp2_TP1-2-\EvenementsAPI\obj\Debug\net5.0\EvenementsAPI.pdb
 C:\Users\Renaud Lussier\Programmation\AEC_PROGRAMMATION\B5-Appli_web_2\TP1(2)\WebApp2_TP1-2-\EvenementsAPI\obj\Debug\net5.0\EvenementsAPI.genruntimeconfig.cache
+C:\Users\Renaud Lussier\Programmation\AEC_PROGRAMMATION\B5-Appli_web_2\TP1(2)\WebApp2_TP1-2-\EvenementsAPI\obj\Debug\net5.0\EvenementsAPI.csproj.AssemblyReference.cache
