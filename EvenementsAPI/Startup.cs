@@ -70,6 +70,8 @@ namespace EvenementsAPI
             {
                 endpoints.MapControllers();
             });
+
+
         }
     }
 }

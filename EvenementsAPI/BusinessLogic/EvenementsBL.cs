@@ -19,6 +19,16 @@ namespace EvenementsAPI.BusinessLogic
         }
         public IEnumerable<Participation> GetParticipations(int id) 
         {
+            var evenement = Repository.Evenements.FirstOrDefault(x => x.Id == id);
+
+            if (evenement == null)
+            {
+                throw new HttpException
+                {
+                    Errors = new { Errors = $"Element introuvable (id = {id})" },
+                    StatusCode = StatusCodes.Status404NotFound
+                };
+            }
             return Repository.Participations.Where(_ => _.IdEvenement == id);
         }
         public Evenement Add(Evenement value) 

@@ -48,6 +48,20 @@ namespace EvenementsAPI.Controllers
             return evenement is null ? NotFound(new { Errors = $"Element introuvable (id = {id})" }) : Ok(evenement);
         }
 
+        // GET api/usagers/5/participations
+        /// <summary>
+        /// Obtenir la liste des participation d'un événement par l'ID de l'événement
+        /// </summary>
+        /// <param name="id"> ID de l'événement</param>
+        [HttpGet("{id}/participations")]
+        [ProducesResponseType(typeof(Evenement), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public ActionResult<Evenement> GetParticipations(int id)
+        {
+            var evenement = _evenementsBL.GetParticipations(id);
+            return evenement is null ? NotFound(new { Errors = $"Element introuvable (id = {id})" }) : Ok(evenement);
+        }
+
         // POST api/usagers
         /// <summary>
         /// Ajouter un nouvel événement

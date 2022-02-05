@@ -45,6 +45,12 @@
             </summary>
             <param name="id"> ID de l'événement</param>
         </member>
+        <member name="M:EvenementsAPI.Controllers.EvenementsController.GetParticipations(System.Int32)">
+            <summary>
+            Obtenir la liste des participation d'un événement par l'ID de l'événement
+            </summary>
+            <param name="id"> ID de l'événement</param>
+        </member>
         <member name="M:EvenementsAPI.Controllers.EvenementsController.Post(EvenementsAPI.Models.Evenement)">
             <summary>
             Ajouter un nouvel événement
